@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704152855) do
+ActiveRecord::Schema.define(:version => 20130704194346) do
 
   create_table "choices", :force => true do |t|
     t.integer "question_id"
@@ -22,8 +22,11 @@ ActiveRecord::Schema.define(:version => 20130704152855) do
 
   create_table "polls", :force => true do |t|
     t.integer "user_id"
+    t.string  "title"
+    t.integer "team_id"
   end
 
+  add_index "polls", ["team_id"], :name => "index_polls_on_team_id"
   add_index "polls", ["user_id"], :name => "index_polls_on_user_id"
 
   create_table "questions", :force => true do |t|
@@ -41,8 +44,15 @@ ActiveRecord::Schema.define(:version => 20130704152855) do
   add_index "responses", ["choice_id"], :name => "index_responses_on_choice_id"
   add_index "responses", ["user_id"], :name => "index_responses_on_user_id"
 
-  create_table "users", :force => true do |t|
-    t.string "username"
+  create_table "teams", :force => true do |t|
+    t.string "name"
   end
+
+  create_table "users", :force => true do |t|
+    t.string  "username"
+    t.integer "team_id"
+  end
+
+  add_index "users", ["team_id"], :name => "index_users_on_team_id"
 
 end
