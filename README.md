@@ -5,6 +5,8 @@ A command line based polling app.
 ## Features
 
 * User sign up
+* Users belong to teams
+    * Polls can be restricted to only certain teams
 * User creation of polls
     * Polls have multiple questions
     * Each question has a set of allowed answers
